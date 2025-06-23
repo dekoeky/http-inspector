@@ -60,7 +60,7 @@ jobs:
 
     - name: Publish Native AOT for ${{ matrix.rid }}
       run: |
-        dotnet publish .\http-inspector\http-inspector.csproj -c Release -r ${{ matrix.rid }} \
+        dotnet publish -c Release -r ${{ matrix.rid }} \
           -p:PublishAot=true \
           -p:Version=${{ needs.version.outputs.version }} \
           -o native-aot/${{ matrix.rid }}
