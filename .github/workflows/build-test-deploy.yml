@@ -59,11 +59,7 @@ jobs:
         dotnet-version: '9.0.x'
 
     - name: Publish Native AOT for ${{ matrix.rid }}
-      run: |
-        dotnet publish -c Release -r ${{ matrix.rid }} \
-          -p:PublishAot=true \
-          -p:Version=${{ needs.version.outputs.version }} \
-          -o native-aot/${{ matrix.rid }}
+      run: dotnet publish -c Release -r ${{ matrix.rid }} -p:PublishAot=true -p:Version=${{ needs.version.outputs.version }} -o native-aot/${{ matrix.rid }}
 
     - name: Upload AOT artifact
       uses: actions/upload-artifact@v4
