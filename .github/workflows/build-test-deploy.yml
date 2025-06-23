@@ -44,8 +44,14 @@ jobs:
     needs: [test, version]
     strategy:
       matrix:
-        rid: [linux-x64, linux-arm64, win-x64]
-    runs-on: ubuntu-latest
+        include:
+          - rid: linux-x64
+            os: ubuntu-latest
+          - rid: linux-arm64
+            os: ubuntu-latest
+          - rid: win-x64
+            os: windows-latest
+    runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v4
 
