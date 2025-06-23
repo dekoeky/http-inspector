@@ -1,4 +1,4 @@
-name: Build, Test, Native AOT Compilation & Docker Image CI + Native AOT Release
+name: Build, Test & Deploy (AOT + Docker)
 
 on:
   push:
