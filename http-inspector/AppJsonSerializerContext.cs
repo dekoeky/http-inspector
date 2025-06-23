@@ -1,7 +1,7 @@
-using http_inspector.Dtos;
+using HttpInspector.Dtos;
 using System.Text.Json.Serialization;
 
-namespace http_inspector;
+namespace HttpInspector;
 
 [JsonSerializable(typeof(RequestInfoDto))]
 [JsonSourceGenerationOptions(WriteIndented = true)]

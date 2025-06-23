@@ -1,4 +1,4 @@
-namespace http_inspector.Dtos;
+namespace HttpInspector.Dtos;
 public class RequestInfoDto
 {
     public RequestMetadataDto Request { get; init; } = default!;

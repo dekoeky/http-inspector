@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace http_inspector.Dtos;
+namespace HttpInspector.Dtos;
 
 public class EnvironmentInfoDto
 {

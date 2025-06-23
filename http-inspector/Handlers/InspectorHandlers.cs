@@ -1,6 +1,6 @@
-using http_inspector.Dtos;
+using HttpInspector.Dtos;
 
-namespace http_inspector.Handlers;
+namespace HttpInspector.Handlers;
 
 internal static class InspectorHandlers
 {

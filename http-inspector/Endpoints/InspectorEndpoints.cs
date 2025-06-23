@@ -1,6 +1,6 @@
-using http_inspector.Handlers;
+using HttpInspector.Handlers;
 
-namespace http_inspector.Endpoints;
+namespace HttpInspector.Endpoints;
 
 public static class InspectorEndpoints
 {
