@@ -1,0 +1,6 @@
+@http_inspector_HostAddress = http://localhost:5101
+
+GET {{http_inspector_HostAddress}}/
+Accept: application/json
+
+###
