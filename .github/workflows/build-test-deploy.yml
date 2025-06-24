@@ -90,7 +90,7 @@ jobs:
       uses: docker/build-push-action@v6
       with:
         push: true
-        context: ./http-inspector
+        context: .
         file: ./http-inspector/Dockerfile
         tags: |
           dekoeky/http-inspector:${{ needs.version.outputs.version }}
@@ -111,7 +111,8 @@ jobs:
   release:
     name: 🌟 GitHub Release
     runs-on: ubuntu-latest
-    needs: [native-aot, version]
+    # needs: [native-aot, version]
+    needs: [version]
     steps:
     - uses: actions/download-artifact@v4
       with:
@@ -122,6 +123,7 @@ jobs:
       with:
         tag_name: v${{ needs.version.outputs.version }}
         files: |
-          artifacts/native-aot-linux-x64/**
-          artifacts/native-aot-linux-arm64/**
-          artifacts/native-aot-win-x64/**
+          artifacts/**
+        # files: |
+        #   artifacts/native-aot-linux-x64/**
+        #   artifacts/native-aot-win-x64/**
