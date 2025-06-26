@@ -3,12 +3,47 @@
     "http": {
       "commandName": "Project",
       "launchBrowser": true,
+      "launchUrl": "some/path?query=SELECT%20'HELLO'%20FROM%20WORLD",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5080"
     },
+
+    "Scalar UI": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "scalar",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5080"
+    },
+
+    "http - About": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "about",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5080"
+    },
+
+    "http - List Endpoints": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "endpoints",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5080"
+    },
+
     "Container (Dockerfile)": {
       "commandName": "Docker",
       "launchBrowser": true,
@@ -18,6 +53,17 @@
       },
       "publishAllPorts": true,
       "useSSL": false
+    },
+
+    "WSL": {
+      "commandName": "WSL2",
+      "launchBrowser": true,
+      "launchUrl": "",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:5080"
+      },
+      "distributionName": ""
     }
   },
   "$schema": "https://json.schemastore.org/launchsettings.json"
