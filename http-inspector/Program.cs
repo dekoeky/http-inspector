@@ -18,5 +18,6 @@ app.MapOpenApi();
 //Maps the scalar UI to /scalar
 app.MapScalarApiReference();
 app.MapInspectorEndpoints();
+app.MapAboutEndpoint();
 
 app.Run();
