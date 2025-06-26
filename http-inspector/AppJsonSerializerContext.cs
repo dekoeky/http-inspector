@@ -3,6 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace HttpInspector;
 
+[JsonSerializable(typeof(IEnumerable<RouteEndpointDto>))]
 [JsonSerializable(typeof(RequestInfoDto))]
 [JsonSerializable(typeof(AboutDto))]
 [JsonSourceGenerationOptions(WriteIndented = true)]

@@ -21,6 +21,29 @@
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5080"
     },
+
+    "http - About": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "about",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5080"
+    },
+
+    "http - List Endpoints": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "endpoints",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5080"
+    },
+
     "Container (Dockerfile)": {
       "commandName": "Docker",
       "launchBrowser": true,

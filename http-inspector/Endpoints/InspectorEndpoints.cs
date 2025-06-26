@@ -25,4 +25,10 @@ public static class InspectorEndpoints
             .WithSummary("About")
             .WithName("About")
             .WithDescription("Returns information about the application");
+
+    public static void MapBrowseEndpoints(this IEndpointRouteBuilder routes) =>
+        routes.MapGet("/endpoints", EndpointInformationHandlers.ListMappedEndpoints)
+            .WithName("BrowseEndpoints")
+            .WithDescription("Lists all mapped endpoints")
+            .WithSummary("Browse Endpoints");
 }

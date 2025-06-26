@@ -19,5 +19,6 @@ app.MapOpenApi();
 app.MapScalarApiReference();
 app.MapInspectorEndpoints();
 app.MapAboutEndpoint();
+app.MapBrowseEndpoints();
 
 app.Run();
