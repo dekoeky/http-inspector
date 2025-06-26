@@ -1,6 +1,31 @@
-@http_inspector_HostAddress = http://localhost:5101
+@http_inspector_HostAddress = http://localhost:5080
 
 GET {{http_inspector_HostAddress}}/
+Accept: application/json
+
+###
+
+GET {{http_inspector_HostAddress}}/about
+Accept: application/json
+
+###
+
+GET {{http_inspector_HostAddress}}/endpoints
+Accept: application/json
+
+###
+
+GET {{http_inspector_HostAddress}}/some/path/on/api?query=SELECT%20*FROM%20WORLD&username=earthling
+Accept: application/json
+
+###
+
+GET {{http_inspector_HostAddress}}/scalar
+Accept: application/json
+
+###
+
+GET {{http_inspector_HostAddress}}/openapi/v1.json
 Accept: application/json
 
 ###
