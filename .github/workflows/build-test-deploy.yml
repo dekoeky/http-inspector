@@ -1,9 +1,9 @@
 name: Build, Test & Deploy (AOT + Docker)
 
 on:
-  push:
-    branches: [ "main" ]
   workflow_dispatch:
+  # push:
+  #   branches: [ "main" ]
 
 jobs:
 
