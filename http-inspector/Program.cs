@@ -21,4 +21,6 @@ app.MapInspectorEndpoints();
 app.MapAboutEndpoint();
 app.MapBrowseEndpoints();
 
+app.RegisterGettingStartedMessage();
+
 app.Run();

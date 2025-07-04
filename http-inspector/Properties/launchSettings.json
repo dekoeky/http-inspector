@@ -11,6 +11,16 @@
       "applicationUrl": "http://localhost:5080"
     },
 
+    "no-browser": {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5080"
+    },
+
     "Scalar UI": {
       "commandName": "Project",
       "launchBrowser": true,
