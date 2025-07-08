@@ -1,9 +1,10 @@
-
 # PREPARATION
-$outdir = "$PSScriptRoot/../http-inspector/bin/Release/startup-timing-test"
+$reporoot = "$PSScriptRoot/../../../"
+$outdir = "$reporoot/http-inspector/bin/Release/startup-timing-test"
+$project = "$reporoot/http-inspector"
 $exe = "$outdir/http-inspector.exe"
 # Remove-Item -Path $outdir -Recurse -Force -ErrorAction SilentlyContinue
-# dotnet publish .\http-inspector\ -c Release -r win-x64 /p:PublishAot=true -o ./http-inspector/bin/Release/startup-timing-test
+# dotnet publish $project -c Release -r win-x64 /p:PublishAot=true -o $outdir
 
 
 # TEST

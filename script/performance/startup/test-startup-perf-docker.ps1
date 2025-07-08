@@ -1,7 +1,7 @@
-
 # PREPARE
-# docker build -f ./http-inspector/Dockerfile.aot -t dekoeky/http-inspector:dev-aot .
-# docker build -f ./http-inspector/Dockerfile.aot -t dekoeky/http-inspector:dev-non-aot .
+$reporoot = "$PSScriptRoot/../../../"
+# docker build -f $reporoot/http-inspector/Dockerfile.aot -t dekoeky/http-inspector:dev-aot .
+# docker build -f $reporoot/http-inspector/Dockerfile.aot -t dekoeky/http-inspector:dev-non-aot .
 
 $IMAGE = 'dekoeky/http-inspector:dev-aot'
 
