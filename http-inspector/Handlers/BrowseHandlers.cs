@@ -19,7 +19,7 @@ internal static class BrowseHandlers
 
                     //Handle special case for MapFallback
                     var examplePath = route == "{*path:nonfile}"
-                        ? "any-other-path"
+                        ? "/any-other-path"
                         : e.RoutePattern.RawText;
 
                     var methods = e.Metadata
