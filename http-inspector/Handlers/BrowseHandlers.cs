@@ -7,7 +7,7 @@ namespace HttpInspector.Handlers;
 
 internal static class BrowseHandlers
 {
-    public static IResult ListMappedEndpoints(HttpContext context, EndpointDataSource endpointDataSource)
+    public static IResult BrowseMappedEndpoints(HttpContext context, EndpointDataSource endpointDataSource)
     {
         var endpoints = endpointDataSource.Endpoints
                 .OfType<RouteEndpoint>()
