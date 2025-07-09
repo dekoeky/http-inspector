@@ -69,20 +69,29 @@ public static class HealthCheckResponseWriters
 
     public static Task WriteLivePlaintext(HttpContext httpContext, HealthReport result)
     {
-        //httpContext.Response.ContentType = "text/plain";
         httpContext.Response.ContentType = "text/plain; charset=utf-8";
 
-        var bytes = result.Status == HealthStatus.Healthy ? LiveBytes : NotLiveBytes;
+        if (result.Status == HealthStatus.Healthy)
+        {
+            httpContext.Response.StatusCode = StatusCodes.Status200OK;
+            return httpContext.Response.Body.WriteAsync(LiveBytes).AsTask();
+        }
 
-        return httpContext.Response.Body.WriteAsync(bytes).AsTask();
+        httpContext.Response.StatusCode = StatusCodes.Status503ServiceUnavailable;
+        return httpContext.Response.Body.WriteAsync(NotLiveBytes).AsTask();
     }
 
     public static Task WriteReadyPlaintext(HttpContext httpContext, HealthReport result)
     {
         httpContext.Response.ContentType = "text/plain; charset=utf-8";
 
-        var bytes = result.Status == HealthStatus.Healthy ? ReadyBytes : UnReadyBytes;
+        if (result.Status == HealthStatus.Healthy)
+        {
+            httpContext.Response.StatusCode = StatusCodes.Status200OK;
+            return httpContext.Response.Body.WriteAsync(ReadyBytes).AsTask();
+        }
 
-        return httpContext.Response.Body.WriteAsync(bytes).AsTask();
+        httpContext.Response.StatusCode = StatusCodes.Status503ServiceUnavailable;
+        return httpContext.Response.Body.WriteAsync(UnReadyBytes).AsTask();
     }
 }

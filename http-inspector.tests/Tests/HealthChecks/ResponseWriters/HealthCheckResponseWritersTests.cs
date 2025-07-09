@@ -24,6 +24,7 @@ public class HealthCheckResponseWritersTests
     private static async Task Test(HealthStatus status, string expectedBody, Func<HttpContext, HealthReport, Task> writeResponse)
     {
         // ---------- ARRANGE ----------
+        var expectOkStatus = status == HealthStatus.Healthy;
         var context = new DefaultHttpContext();
         var responseStream = new MemoryStream();
         context.Response.Body = responseStream;
@@ -41,5 +42,6 @@ public class HealthCheckResponseWritersTests
         var body = await reader.ReadToEndAsync();
         Assert.AreEqual("text/plain; charset=utf-8", context.Response.ContentType);
         Assert.AreEqual(expectedBody, body);
+        Assert.AreEqual(expectOkStatus, context.Response.StatusCode is >= 200 and < 300);
     }
 }
