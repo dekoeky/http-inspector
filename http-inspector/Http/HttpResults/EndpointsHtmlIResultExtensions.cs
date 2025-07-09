@@ -19,14 +19,20 @@ public static class EndpointsHtmlIResultExtensions
         sb.AppendLine("</style></head><body>");
         sb.AppendLine("<h1>Available Endpoints</h1>");
         sb.AppendLine("<table>");
-        sb.AppendLine("<thead><tr><th>Methods</th><th>Route</th><th>URL</th></tr></thead><tbody>");
+        sb.AppendLine("<thead><tr>");
+        sb.AppendLine("<th>Endpoint</th>");
+        sb.AppendLine("<th>Route</th>");
+        sb.AppendLine("<th>Methods</th>");
+        sb.AppendLine("<th>Example URL</th>");
+        sb.AppendLine("</tr></thead><tbody>");
 
         foreach (var e in endpoints)
         {
             sb.AppendLine("<tr>");
-            sb.AppendLine($"<td>{WebUtility.HtmlEncode(e.Methods)}</td>");
+            sb.AppendLine($"<td>{WebUtility.HtmlEncode(e.DisplayName)}</td>");
             sb.AppendLine($"<td>{WebUtility.HtmlEncode(e.Route)}</td>");
-            sb.AppendLine($"<td><a href=\"{WebUtility.HtmlEncode(e.Url)}\">{System.Net.WebUtility.HtmlEncode(e.Url)}</a></td>");
+            sb.AppendLine($"<td>{WebUtility.HtmlEncode(e.Methods)}</td>");
+            sb.AppendLine($"<td><a href=\"{WebUtility.HtmlEncode(e.Url)}\">{WebUtility.HtmlEncode(e.Url)}</a></td>");
             sb.AppendLine("</tr>");
         }
 

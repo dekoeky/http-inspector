@@ -8,5 +8,6 @@ public static class BrowseEndpoints
         routes.MapGet("/endpoints", BrowseHandlers.BrowseMappedEndpoints)
             .WithName("BrowseEndpoints")
             .WithDescription("Lists all mapped endpoints")
-            .WithSummary("Browse Endpoints");
+            .WithSummary("Browse Endpoints")
+            .WithDisplayName("Endpoint Browser");
 }

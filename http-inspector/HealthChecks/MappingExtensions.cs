@@ -30,7 +30,7 @@ public static class MappingExtensions
         {
             Predicate = hc => hc.Tags.Contains(Tags.Ready),
             ResponseWriter = HealthCheckResponseWriters.WriteReadyPlaintext,
-        });
+        }).WithDisplayName("Ready Health Check");
     }
 
     /// <summary>
@@ -43,7 +43,7 @@ public static class MappingExtensions
             //Includes only HealthChecks, tagged with the live tag (or none, if none have this tag)
             Predicate = hc => hc.Tags.Contains(Tags.Live),
             ResponseWriter = HealthCheckResponseWriters.WriteLivePlaintext,
-        });
+        }).WithDisplayName("Live Health Check");
     }
 
     /// <summary>
@@ -54,7 +54,7 @@ public static class MappingExtensions
         endpoints.MapHealthChecks(pattern, new HealthCheckOptions
         {
             ResponseWriter = HealthCheckResponseWriters.WriteExplainResponse,
-        });
+        }).WithDisplayName("Explain Health Check");
     }
 
     /// <summary>
@@ -62,6 +62,7 @@ public static class MappingExtensions
     /// </summary>
     public static void MapAllHealthChecks(this IEndpointRouteBuilder endpoints, string pattern = Endpoints.Health)
     {
-        endpoints.MapHealthChecks(pattern);
+        endpoints.MapHealthChecks(pattern)
+            .WithDisplayName("Health Check");
     }
 }

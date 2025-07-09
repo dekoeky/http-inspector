@@ -16,25 +16,23 @@ internal static class BrowseHandlers
                 {
                     var baseUrl = $"{context.Request.Scheme}://{context.Request.Host}{context.Request.PathBase}";
                     var route = e.RoutePattern.RawText;
-                    var url = $"{baseUrl}{e.RoutePattern.RawText}";
 
                     //Handle special case for MapFallback
-                    if (route == "{*path:nonfile}")
-                    {
-                        route = "Fallback for all other requests that are not files";
-                        url = $"{baseUrl}/any-other-path";
-                    }
+                    var examplePath = route == "{*path:nonfile}"
+                        ? "any-other-path"
+                        : e.RoutePattern.RawText;
 
                     var methods = e.Metadata
-                        .OfType<HttpMethodMetadata>()
-                        .FirstOrDefault()
-                        ?.HttpMethods ?? ["ALL"];
+                            .OfType<HttpMethodMetadata>()
+                            .FirstOrDefault()
+                            ?.HttpMethods ?? ["ALL"];
 
                     return new RouteEndpointDto
                     {
                         Route = route,
                         Methods = string.Join(", ", methods),
-                        Url = url,
+                        Url = $"{baseUrl}{examplePath}",
+                        DisplayName = e.DisplayName,
                     };
                 });
 
