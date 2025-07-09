@@ -1,6 +1,7 @@
-using HttpInspector;
 using HttpInspector.Endpoints;
 using HttpInspector.HealthChecks;
+using HttpInspector.Json;
+using HttpInspector.Services;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateSlimBuilder(args);

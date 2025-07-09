@@ -1,4 +1,4 @@
-namespace HttpInspector;
+namespace HttpInspector.Services;
 
 public static class GettingStartedMessage
 {
