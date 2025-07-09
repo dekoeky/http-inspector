@@ -6,7 +6,7 @@ namespace HttpInspector.Endpoints;
 public static class AboutEndpoints
 {
     public static void MapAbout(this IEndpointRouteBuilder routes) =>
-        routes.MapGet("/about", AboutHandlers.About)
+        routes.MapGet(Patterns.About, AboutHandlers.About)
             .Produces<AboutDto>()
             .WithDisplayName("About")
             .WithSummary("About")
