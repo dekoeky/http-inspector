@@ -34,7 +34,8 @@ internal static class BrowseHandlers
                         Url = $"{baseUrl}{examplePath}",
                         DisplayName = e.DisplayName,
                     };
-                });
+                })
+                .OrderBy(e => e.Route);
 
         return context.Request.AcceptsHtml()
             ? Results.Extensions.EndpointsHtml(endpoints)
