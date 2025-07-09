@@ -24,25 +24,29 @@ public static class GettingStartedMessage
             var loggerFactory = app.Services.GetRequiredService<ILoggerFactory>();
             var logger = loggerFactory.CreateLogger(LoggerCategory);
 
-            //Grab all configured urls to print them in the message
-            //If no urls are configured, use a default one to generate the demo urls
-            var defaultUrls = app.Urls.Count > 0
-                ? app.Urls.ToList()
-                : ["http://localhost:8080"];
-
-            //Use the first url for our demo urls
-            var first = defaultUrls.First();
+            //Grab first configured url as base URL
+            var baseUrl = app.Urls.FirstOrDefault() ?? "http://localhost:8080";
 
             //Create an enumeration of demo urls to print
-            var allUrls = defaultUrls
-                .Append($"{first}/LandingPage?UserName=John")
-                .Append($"{first}/some/path" +
-                        "?hello=world" +
-                        "&TimeOfStartup=2025-07-04T12%3A13%3A14.8689932%2B02%3A00")
-                ;
+            string[] paths = [
+                "/",
+                "/LandingPage?UserName=John",
+                "/some/path" +
+                "?hello=world" +
+                "&TimeOfStartup=2025-07-04T12%3A13%3A14.8689932%2B02%3A00",
+
+                HealthChecks.Endpoints.Health,
+                HealthChecks.Endpoints.HealthLive,
+                HealthChecks.Endpoints.HealthReady,
+                HealthChecks.Endpoints.HealthExplain,
+
+                Endpoints.Patterns.About,
+                Endpoints.Patterns.Browse,
+                ];
+            var urls = paths.Select(p => $"{baseUrl}{p}");
 
             //Parse the urls into a single string
-            var demoUrls = string.Join(Environment.NewLine, allUrls);
+            var demoUrls = string.Join(Environment.NewLine, urls);
 
             //Log the Getting Started Message
             logger.LogInformation(Message, demoUrls);
