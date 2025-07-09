@@ -44,3 +44,6 @@ WORKDIR /app
 EXPOSE 8080
 COPY --from=publish /app/publish .
 ENTRYPOINT ["./http-inspector"]
+
+HEALTHCHECK --interval=10s --timeout=2s --start-period=1s --retries=3 \
+  CMD wget --quiet --spider http://localhost:8080/health/live || exit 1
