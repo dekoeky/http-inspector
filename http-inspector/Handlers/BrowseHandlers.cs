@@ -4,7 +4,7 @@ using HttpInspector.Http.HttpResults;
 
 namespace HttpInspector.Handlers;
 
-internal static class EndpointInformationHandlers
+internal static class BrowseHandlers
 {
     public static IResult ListMappedEndpoints(HttpContext context, EndpointDataSource endpointDataSource)
     {

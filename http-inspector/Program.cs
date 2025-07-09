@@ -20,8 +20,8 @@ app.MapOpenApi();
 //Maps the scalar UI to /scalar
 app.MapScalarApiReference();
 app.MapDefaultHealthChecks();
-app.MapInspectorEndpoints();
-app.MapAboutEndpoint();
+app.MapInspector();
+app.MapAbout();
 app.MapBrowseEndpoints();
 
 app.RegisterGettingStartedMessage();
