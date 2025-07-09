@@ -1,4 +1,6 @@
 using HttpInspector.Dtos;
+using HttpInspector.Http;
+using HttpInspector.Http.HttpResults;
 
 namespace HttpInspector.Handlers;
 
@@ -22,14 +24,21 @@ internal static class EndpointInformationHandlers
                         url = $"{baseUrl}/any-other-path";
                     }
 
+                    var methods = e.Metadata
+                        .OfType<HttpMethodMetadata>()
+                        .FirstOrDefault()
+                        ?.HttpMethods ?? ["ALL"];
+
                     return new RouteEndpointDto
                     {
                         Route = route,
-                        Methods = string.Join(", ", e.Metadata.OfType<HttpMethodMetadata>().FirstOrDefault()?.HttpMethods ?? ["ALL"]),
+                        Methods = string.Join(", ", methods),
                         Url = url,
                     };
                 });
 
-        return Results.Json(endpoints, AppJsonSerializerContext.Default.IEnumerableRouteEndpointDto);
+        return context.Request.AcceptsHtml()
+            ? Results.Extensions.EndpointsHtml(endpoints)
+            : Results.Json(endpoints, AppJsonSerializerContext.Default.IEnumerableRouteEndpointDto);
     }
 }
