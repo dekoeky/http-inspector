@@ -1,5 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
 using HttpInspector.Dtos;
+using HttpInspector.Json;
 using System.Text.Json;
 
 namespace HttpInspector.Benchmarks;

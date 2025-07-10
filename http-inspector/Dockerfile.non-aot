@@ -30,3 +30,6 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "http-inspector.dll"]
+
+HEALTHCHECK --interval=10s --timeout=2s --start-period=1s --retries=3 \
+  CMD wget --quiet --spider http://localhost:8080/health/live || exit 1

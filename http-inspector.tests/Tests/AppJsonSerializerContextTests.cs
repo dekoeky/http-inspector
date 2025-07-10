@@ -1,4 +1,5 @@
-﻿using HttpInspector.TestData;
+﻿using HttpInspector.Json;
+using HttpInspector.TestData;
 
 namespace HttpInspector.Tests;
 

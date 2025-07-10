@@ -1,7 +1,7 @@
 using HttpInspector.Dtos;
 using System.Text.Json.Serialization;
 
-namespace HttpInspector;
+namespace HttpInspector.Json;
 
 [JsonSerializable(typeof(IEnumerable<RouteEndpointDto>))]
 [JsonSerializable(typeof(RequestInfoDto))]

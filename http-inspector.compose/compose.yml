@@ -1,0 +1,23 @@
+
+name: http-inspector-dev
+
+services:
+  http-inspector:
+    image: dekoeky/http-inspector:dev
+    build:
+      context: ..
+      dockerfile: http-inspector/Dockerfile.non-aot
+    ports:
+      - ${PORT_NON_AOT}:8080
+    environment:
+      ASPNETCORE_ENVIRONMENT: ${ENVIRONMENT}
+
+  http-inspector-aot:
+    image: dekoeky/http-inspector:dev-aot
+    build:
+      context: ..
+      dockerfile: http-inspector/Dockerfile.aot
+    ports:
+      - ${PORT_AOT}:8080
+    environment:
+      ASPNETCORE_ENVIRONMENT: ${ENVIRONMENT}
