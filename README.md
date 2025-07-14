@@ -30,7 +30,7 @@ docker buildx create --name multiarch --use
 
 ```powershell
 # Build & Push
-docker build `
+docker buildx build `
     --platform linux/amd64,linux/arm64 `
     --tag dekoeky/http-inspector:latest `
     --tag dekoeky/http-inspector:0.0.1 `
