@@ -28,3 +28,7 @@ app.MapBrowseEndpoints();
 app.RegisterGettingStartedMessage();
 
 app.Run();
+
+
+// To allow the integration tests to access the Program class
+public partial class Program;
