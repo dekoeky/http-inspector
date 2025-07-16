@@ -11,6 +11,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <InternalsVisibleTo Include="http-inspector.integration-tests" />
+    <InternalsVisibleTo Include="http-inspector.tests" />
+    <InternalsVisibleTo Include="http-inspector.performance" />
+  </ItemGroup>
+
+  <ItemGroup>
     <InternalsVisibleTo Include="http-inspector.tests" />
     <InternalsVisibleTo Include="http-inspector.performance" />
   </ItemGroup>
