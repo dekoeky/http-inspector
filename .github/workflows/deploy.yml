@@ -10,7 +10,7 @@ on:
       deployment_dir:
         description: 'Directory on Raspberry Pi to deploy to'
         required: true
-        default: '~/deployments/http-inspector'
+        default: 'deployments/http-inspector'
 
 jobs:
   deploy:
