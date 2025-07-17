@@ -1,0 +1,39 @@
+name: Deploy to Raspberry Pi
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy to Raspberry Pi
+    runs-on: ubuntu-latest
+    environment: raspberrypi5
+
+    steps:
+    # - name: Checkout code
+    #   uses: actions/checkout@v3
+
+    # - name: Build Docker image
+    #   run: docker build -t myapp:latest .
+
+    # - name: Save Docker image
+    #   run: docker save myapp:latest | gzip > myapp.tar.gz
+
+    # - name: Copy image to Raspberry Pi
+    #   uses: appleboy/scp-action@v1.0.0
+    #   with:
+    #     host: ${{ secrets.PI_HOST }}
+    #     username: ${{ secrets.PI_USER }}
+    #     key: ${{ secrets.PI_SSH_KEY }}
+    #     source: "myapp.tar.gz"
+    #     target: "/home/${{ secrets.PI_USER }}/"
+
+    - name: Load and run on Raspberry Pi
+      uses: appleboy/ssh-action@v1.2.2
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+            echo "Hello World, from GitHub Actions!" > ~/test.txt
+            echo "This is a test deployment script." >> ~/test.txt

@@ -1,6 +1,6 @@
+using HttpInspector.Json;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
-using System.Text;
 using System.Text.Json;
 
 namespace HttpInspector.HealthChecks.ResponseWriters;
@@ -22,30 +22,32 @@ public static class HealthCheckResponseWriters
     {
         httpContext.Response.ContentType = "application/json; charset=utf-8";
 
-        using var memoryStream = new MemoryStream();
-        await using var jsonWriter = new Utf8JsonWriter(memoryStream, ExplainWriterOptions);
+        await using var jsonWriter = new Utf8JsonWriter(httpContext.Response.BodyWriter, ExplainWriterOptions);
 
         jsonWriter.WriteStartObject();
         jsonWriter.WriteString("status", healthReport.Status.ToString());
         jsonWriter.WriteStartObject("results");
 
-        foreach (var healthReportEntry in healthReport.Entries)
+        foreach (var (key, entry) in healthReport.Entries)
         {
-            jsonWriter.WriteStartObject(healthReportEntry.Key);
-            jsonWriter.WriteString("status", healthReportEntry.Value.Status.ToString());
-            if (healthReportEntry.Value.Description is not null)
-                jsonWriter.WriteString("description", healthReportEntry.Value.Description);
-            if (healthReportEntry.Value.Data.Any())
+            jsonWriter.WriteStartObject(key);
+            jsonWriter.WriteString("status", entry.Status.ToString());
+            if (entry.Description is not null)
+                jsonWriter.WriteString("description", entry.Description);
+            jsonWriter.WriteString("duration", entry.Duration.ToString("g"));
+
+            //jsonWriter.TryToSerialize("exception", entry.Exception);
+
+            jsonWriter.WriteStartArray("tags");
+            foreach (var tag in entry.Tags) jsonWriter.WriteStringValue(tag);
+            jsonWriter.WriteEndArray();
+
+            if (entry.Data.Any())
             {
                 jsonWriter.WriteStartObject("data");
 
-                foreach (var item in healthReportEntry.Value.Data)
-                {
-                    jsonWriter.WritePropertyName(item.Key);
-
-                    JsonSerializer.Serialize(jsonWriter, item.Value,
-                        item.Value.GetType());
-                }
+                foreach (var item in entry.Data)
+                    jsonWriter.TryToSerialize(item.Key, item.Value);
 
                 jsonWriter.WriteEndObject();
             }
@@ -55,11 +57,6 @@ public static class HealthCheckResponseWriters
         jsonWriter.WriteEndObject();
         jsonWriter.WriteEndObject();
         await jsonWriter.FlushAsync();
-
-        var json = Encoding.UTF8.GetString(memoryStream.ToArray());
-
-        //TODO: Write directly in the body ?
-        await httpContext.Response.WriteAsync(json);
     }
 
     private static readonly byte[] LiveBytes = "live"u8.ToArray();
